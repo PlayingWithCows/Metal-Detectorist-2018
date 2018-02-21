@@ -18,12 +18,16 @@ public class HeadMovement : MonoBehaviour {
 
     void RotateObject(float mouseX, float mouseY)
     {
-        gameObject.transform.Rotate(Vector3.up, mouseX * Time.deltaTime * rotateSpeed, Space.World);
+        currentAngle -= mouseY * rotateSpeed;
+                   
+        currentAngle = Mathf.Clamp(currentAngle, -maxUpDownAngle, maxUpDownAngle);
+
+        gameObject.transform.localRotation = Quaternion.Euler(currentAngle, gameObject.transform.localRotation.eulerAngles.y, gameObject.transform.localRotation.eulerAngles.z);
+
+
+        gameObject.transform.parent.transform.Rotate(Vector3.up, mouseX * rotateSpeed);
+
         
-        if ((Mathf.Abs(currentAngle) + mouseY) <= maxUpDownAngle)
-        {
-            currentAngle = currentAngle + mouseY;
-            gameObject.transform.Rotate(Vector3.left, mouseY * Time.deltaTime * rotateSpeed);
-        }
+
     }
 }
