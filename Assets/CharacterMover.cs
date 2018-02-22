@@ -36,7 +36,7 @@ public class CharacterMover : MonoBehaviour {
         float strafeLeftRight = Input.GetAxis("Horizontal");
     
         float walkForwardBackward = Input.GetAxis("Vertical");
-        Debug.Log(walkForwardBackward);
+        //Debug.Log(walkForwardBackward);
         if (canMove)
         {
     
